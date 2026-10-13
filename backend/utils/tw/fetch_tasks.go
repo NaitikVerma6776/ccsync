@@ -8,9 +8,6 @@ import (
 )
 
 func FetchTasksFromTaskwarrior(email, encryptionSecret, origin, UUID string) ([]models.Task, error) {
-	taskwarriorMu.Lock()
-	defer taskwarriorMu.Unlock()
-
 	tempDir, err := os.MkdirTemp("", utils.SafeTempDirPrefix("taskwarrior-", email))
 	if err != nil {
 		return nil, fmt.Errorf("failed to create temporary directory: %v", err)

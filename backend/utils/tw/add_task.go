@@ -9,9 +9,6 @@ import (
 )
 
 func AddTaskToTaskwarrior(req models.AddTaskRequestBody, dueDate string) error {
-	taskwarriorMu.Lock()
-	defer taskwarriorMu.Unlock()
-
 	tempDir, err := os.MkdirTemp("", utils.SafeTempDirPrefix("taskwarrior-", req.Email))
 	if err != nil {
 		return fmt.Errorf("failed to create temporary directory: %v", err)

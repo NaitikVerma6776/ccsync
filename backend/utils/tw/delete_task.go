@@ -7,9 +7,6 @@ import (
 )
 
 func DeleteTaskInTaskwarrior(email, encryptionSecret, uuid, taskuuid string) error {
-	taskwarriorMu.Lock()
-	defer taskwarriorMu.Unlock()
-
 	tempDir, err := os.MkdirTemp("", utils.SafeTempDirPrefix("taskwarrior-", email))
 	if err != nil {
 		return fmt.Errorf("failed to create temporary directory: %v", err)

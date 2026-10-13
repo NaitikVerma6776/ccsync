@@ -9,9 +9,6 @@ import (
 func DeleteTasksInTaskwarrior(email, encryptionSecret, uuid string, taskUUIDs []string) (map[string]string, error) {
 	failedTasks := make(map[string]string)
 
-	taskwarriorMu.Lock()
-	defer taskwarriorMu.Unlock()
-
 	tempDir, err := os.MkdirTemp("", utils.SafeTempDirPrefix("taskwarrior-", email))
 
 	if err != nil {
